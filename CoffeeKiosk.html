@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>키오스크</title>
+
+
+        <style>
+        /* <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet"> */
+
+        @font-face {
+            font-family: 'Cafe24Moyamoya-Face-v1.0';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/Cafe24Moyamoya-Face-v1.0.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body{
+            font-family: 'Cafe24Moyamoya-Face-v1.0';
+        }
+
+        p.p{
+            text-align: center;
+            font-size: 35pt;
+            
+        }
+        /* body{
+            color: rgba(255,255,255,1);
+            background-color: transparent;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            width: 2000px;
+            background-image: url(./img/coffee_background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            td, .container,.p, .mouse1, .mouse2, .mouse3, button.button1, button.button2, button.button3 {
+                position: relative;
+                z-index: 100;
+            }
+            
+            p{
+                position: relative;
+                z-index: 100;
+            }
+        }
+
+        body::before {
+            position: absolute;
+            content: "";
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.5);
+        } */
+
+        /* .container1{
+
+            
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .container1::after{           
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            content: "";
+            background-image: url(./img/coffee_background3.jpg);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.6;
+        } */
+
+        .container {
+            width: 460px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        div.centered {
+            text-align: center;
+        }
+        
+        fieldset legend{
+            font-weight: bold;
+            font-size: 18px;
+            color: purple;
+        }
+
+        ul li{
+            margin-bottom: 10px;
+        }
+
+        .total{
+            margin-bottom: 10px;
+            text-align: center;
+            color: red;
+        }
+
+        button.button1 {
+            border: 0;
+            outline: none;
+            font-size: 15px;
+            margin: 5px;
+            background: black;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        button.button1:hover {
+            color: white;
+            background: orange;
+        }
+
+        button.button2 {
+            border: 0;
+            outline: none;
+            font-size: 15px;
+            margin: 5px;
+            background: black;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        button.button2:hover {
+            color: white;
+            background: orange;
+        }
+
+        button.button3 {
+            border: 0;
+            outline: none;
+            font-size: 15px;
+            margin: 5px;
+            background: black;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        button.button3:hover {
+            color: white;
+            background: orange;
+        }
+
+        .my_img{
+            display: none;
+        }
+
+        .my_box:hover .my_img{
+            display: block;
+        }
+
+        .banner_img, .banner_bg{
+            display:inline-block;
+            position: relative;
+        }
+
+        .banner_img:hover:after,
+        .banner_img:hover > .hover_text,
+        .banner_bg:hover:after,
+        .banner_bg:hover > .hover_text
+        {
+            display:block;
+        }
+        
+        .banner_img:after,.banner_bg:after,.hover_text{
+            display:none;
+        }
+
+        .banner_img:after,.banner_bg:after{
+            content:'';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .banner_img {
+            overflow: hidden;
+        }
+
+        .banner_img img{
+            height: 340px;
+        }
+
+        .banner_img:hover img{
+            transform: scale(1.2);
+            transition: 1s;
+        }
+
+        .hover_text {
+            position: absolute;
+            top: 140px;
+            left: 77px;
+            color: #fff;
+            z-index: 20;
+            font-weight: 600;
+            font-size: 40px;
+        }
+
+
+       </style>
+
+        <script>
+            var menu1 = 2500;
+            var menu2 = 3200;
+            var menu3 = 3800;
+            var total_sum = 0;
+            var count1 = 0;
+            var count2 = 0;
+            var count3 = 0;
+
+            function click1(){
+                
+                var Americano = document.getElementById('Americano');
+                var Caramel = document.getElementById('Caramel');
+                var Vanilla = document.getElementById('Vanilla');
+                var order4 = document.getElementById('order4');
+                var order5 = document.getElementById('order5');
+                var order6 = document.getElementById('order6');
+                
+
+                count1 += 1;
+                Americano.value = menu1;
+                order4.value = count1;
+
+                total_sum = (Americano.value * order4.value) + (Caramel.value * order5.value) + (Vanilla.value * order6.value);
+               
+                total2.value = total_sum;
+                total_count.value = (order4.value * 1) + (order5.value * 1) + (order6.value * 1);
+
+                var popup = window.open('practice3-2.html','','width=300px, height=150px, top=300px, left =650px');
+                
+
+                popup.onbeforeunload = function(){
+                    
+                    var shot = document.getElementById('shot_plus').value;
+                    total2.value = (total2.value * 1) + (shot * 1);
+                }
+            }
+
+            function click2(){
+
+                var Americano = document.getElementById('Americano');
+                var Caramel = document.getElementById('Caramel');
+                var Vanilla = document.getElementById('Vanilla');
+                var order4 = document.getElementById('order4');
+                var order5 = document.getElementById('order5');
+                var order6 = document.getElementById('order6');
+
+                count2 += 1;
+                Caramel.value = menu2;
+                order5.value = count2;
+
+                total_sum = (Americano.value * order4.value) + (Caramel.value * order5.value) + (Vanilla.value * order6.value);
+               
+                total2.value = total_sum;
+                total_count.value = (order4.value * 1) + (order5.value * 1) + (order6.value * 1);
+
+                var popup = window.open('practice3-2.html','','width=300px, height=150px, top=300px, left =650px');
+
+                popup.onbeforeunload = function(){
+                    
+                    var shot = document.getElementById('shot_plus').value;
+                    total2.value = (total2.value * 1) + (shot * 1);
+                }
+            }
+
+            function click3(){
+
+                var Americano = document.getElementById('Americano');
+                var Caramel = document.getElementById('Caramel');
+                var Vanilla = document.getElementById('Vanilla');
+                var order4 = document.getElementById('order4');
+                var order5 = document.getElementById('order5');
+                var order6 = document.getElementById('order6');
+
+                count3 += 1;
+                Vanilla.value = menu3;
+                order6.value = count3;
+
+                total_sum = (Americano.value * order4.value) + (Caramel.value * order5.value) + (Vanilla.value * order6.value);
+               
+                total2.value = total_sum;
+                total_count.value = (order4.value * 1) + (order5.value * 1) + (order6.value * 1);
+
+                var popup = window.open('practice3-2.html','','width=300px, height=150px, top=300px, left =650px');
+
+                popup.onbeforeunload = function(){
+                    
+                    var shot = document.getElementById('shot_plus').value;
+                    total2.value = (total2.value * 1) + (shot * 1);
+                }
+            }
+
+            function order_reset(){
+                var count = 0;
+                var order4 = document.getElementById('order4');
+                var order5 = document.getElementById('order5');
+                var order6 = document.getElementById('order6');
+
+                order4.value = count;
+                order5.value = count;
+                order6.value = 0;
+
+                total_sum = (Americano.value * order4.value) + (Caramel.value * order5.value) + (Vanilla.value * order6.value);
+               
+                total2.value = total_sum;
+                total_count.value = (order4.value * 1) + (order5.value * 1) + (order6.value * 1);
+            }
+
+            // $("#confirmStart").click(function () {
+            //     Swal.fire({
+            //     title: '정말로 그렇게 하시겠습니까?',
+            //     text: "다시 되돌릴 수 없습니다. 신중하세요.",
+            //     icon: 'warning',
+            //     showCancelButton: true,
+            //     confirmButtonColor: '#3085d6',
+            //     cancelButtonColor: '#d33',
+            //     confirmButtonText: '승인',
+            //     cancelButtonText: '취소',
+            //     reverseButtons: true, // 버튼 순서 거꾸로
+      
+            //     }).then((result) => {
+            //         if (result.isConfirmed) {
+            //             Swal.fire(
+            //                 '승인이 완료되었습니다.',
+            //                 '화끈하시네요~!',
+            //                 'success'
+            //             )
+            //         }
+            //     })
+            // });
+
+            function btn(){
+                if(total2.value == 0){
+                    alert('담겨있는 메뉴가 없습니다.');
+                    return;
+                }
+
+                if(!confirm(total2.value + '원 주문을 진행하시겠습니까?')){
+                    alert('주문이 취소되었습니다');
+                    return;
+                }
+
+                if(!confirm("매장에서 드시나요?")){
+                    alert('주문이 접수 되었습니다.');
+                }else{
+                    alert('주문이 접수 되었습니다.');
+                }
+            }
+
+            function minus1(){
+                var order4 = document.getElementById('order4');
+
+                count1 -= 1;
+                order4.value = count1;
+
+                if(order4.value == -1){
+                    count1 = 0;
+                    order4.value = count1;
+                }else{
+                    total_sum = (Americano.value * order4.value) + (Caramel.value * order5.value) + (Vanilla.value * order6.value);
+
+                    total2.value = total_sum;
+                    total_count.value = (order4.value * 1) + (order5.value * 1) + (order6.value * 1);
+                }
+
+            }
+
+            function minus2(){
+                var order5 = document.getElementById('order5');
+
+                count2 -= 1;
+                order5.value = count2;
+
+                if(order5.value == -1){
+                    count2 = 0;
+                    order5.value = count2;
+                }else{
+                    total_sum = (Americano.value * order4.value) + (Caramel.value * order5.value) + (Vanilla.value * order6.value);
+
+                    total2.value = total_sum;
+                    total_count.value = (order4.value * 1) + (order5.value * 1) + (order6.value * 1);
+                }
+            }
+
+            function minus3(){
+                var order6 = document.getElementById('order6');
+
+                count3 -= 1;
+                order6.value = count3;
+
+                if(order6.value == -1){
+                    count3 = 0;
+                    order6.value = count3;
+                }else{
+                    total_sum = (Americano.value * order4.value) + (Caramel.value * order5.value) + (Vanilla.value * order6.value);
+
+                    total2.value = total_sum;
+                    total_count.value = (order4.value * 1) + (order5.value * 1) + (order6.value * 1);
+                }
+            }
+
+        </script>
+
+        <script type = 'text/javascript'>
+            function admin(){
+                var inputString = prompt('아이디를 입력하세요(admin 입력)');
+
+                if(inputString == 'admin'){
+                    location.href='practice3.admin.php';
+                }else{
+                    alert('다시 확인해주세요');
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+    <div class = 'container1'>
+        
+        <br>
+        <p class = 'p'><span style="border-radius: 15px 15px 15px 0; border: 3px solid #283eff; padding: 0.5em 0.6em; color: #dd129d; font-weight: bold;">카페 키오스크</span></p>
+
+        <table style = 'margin-left: auto; margin-right: auto; color: purple; font-size: 20px;'>
+            <tr>
+                <td>
+                    <div style = 'text-align: center;' class = 'my_box'> 
+
+                    <a class = 'banner_img' onclick = 'click1()'>
+                    <img src = './img/coffee1.png'  width = '180px' height = '250px' style = 'margin: 20px;' >
+                    <p class = 'hover_text' >담기</p>
+                    </a></div>
+                </td>
+                
+                <td>
+                    <a class = 'banner_img' onclick = 'click2()'>
+                        <img src = './img/latte.png'  width = '180px' height = '250px' style = 'margin: 20px;' >
+                        <p class = 'hover_text' >담기</p>
+                    </a></div>
+                </td>
+                
+                <td>
+                    <a class = 'banner_img' onclick = 'click3()'>
+                        <img src = './img/coldbrew.png'  width = '180px' height = '250px' style = 'margin: 20px;' >
+                        <p class = 'hover_text' >담기</p>
+                        </a></div>
+                </td>
+                
+                    </div>
+            <tr>
+                <td style = 'text-align: center;'>아메리카노</td>
+                <td style = 'text-align: center;'>카라멜마끼아또</td>
+                <td style = 'text-align: center;'>바닐라라떼</td>
+            </tr>
+
+            <tr>
+                <td style = 'text-align: center;'>2500원</td>
+                <td style = 'text-align: center;'>3200원</td>
+                <td style = 'text-align: center;'>3800원</td>
+            </tr>
+
+        </table>    
+        <br>
+                <form>
+                    <div class = 'container'>
+                        <fieldset>
+                            <legend>주문 정보</legend>
+                            <ul id = 'order'>
+                                <li>
+                                    아메리카노 &nbsp; (1개)
+                                    <input type = 'button' onclick = 'minus1()' value = '-'>
+                                    <label><input type = 'text' size = '7' id = 'Americano' readonly style = 'text-align: right;'>원</label>
+                                    <input type = 'text' size = '3' id = 'order4' readonly style = 'text-align: right;' min="1">개
+                                    </label>
+                                </li>
+
+                                <li>
+                                    카라멜마끼아또 &nbsp; (1개)
+                                    <input type = 'button' onclick = 'minus2()' value = '-'>
+                                    <label><input type = 'text' size = '7' id = 'Caramel' readonly style = 'text-align: right;'>원
+                                    <input type = 'text' size = '3' id = 'order5' readonly style = 'text-align: right;'>개</label>
+                                </li>
+
+                                <li>
+                                    바닐라라떼 &nbsp; (1개)
+                                    <input type = 'button' onclick = 'minus3()' value = '-'>
+                                    <label><input type = 'text' size = '7' id = 'Vanilla' readonly style = 'text-align: right;'>원
+                                    <input type = 'text' size = '3' id = 'order6' readonly style = 'text-align: right;'>개</label>
+                                </li>
+                            </ul>
+
+                            <div class = 'total'>
+                                총 금액 &nbsp; <input type = 'text' size = '12' id = 'total2' readonly>원
+                                <input typ = 'text' size = '3' id = 'total_count' readonly style = 'text-align: right;'>개
+                            </div>
+
+                            <div class = 'centered'>
+                                <button class = 'btn btn-secondary m-2' id = 'confirmStart' onclick = 'btn()'>주문하기</button>                                
+
+                                <input type = 'reset' value = '초기화' onclick = 'order_reset()'>
+                            </div>
+                            
+                        </fieldset>
+                        
+                    </div>
+                </form>
+            
+        </table>
+    
+
+        <br><hr>
+        <input type = 'hidden' id = 'shot_plus'>
+
+        <p style = 'text-align: center; color: red; font-size: 17pt;'>관계자 외 클릭금지</p>
+
+        <form action = 'practice3_admin.php' method = 'post'>
+            <div class = 'centered'>
+            <input type = 'button' value = '관리자 로그인' style = 'font-size: 15px;' onclick = 'admin()'>
+            </div>
+        </form>
+    </div>
+    </body>
+</html>
