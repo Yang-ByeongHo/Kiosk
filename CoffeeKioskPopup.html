@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <script>
+            var count = 0;
+            var shot = 500;
+        
+            function minus(){
+
+                document.getElementById('S_total').value;
+
+                count -= 1;
+                S_total.value = count;
+
+                if(count == -1){
+                    count = 0;
+                    S_total.value = 0;
+                }else{
+                    shot = (shot * count);
+                    S_total.value = shot;
+                    shot = 500;
+                }
+            }
+
+            function plus(){
+                var sum = document.getElementById('S_total').value;
+
+                count += 1;
+                S_total.value = count;
+
+                if(count ==5){
+                    count = 4;
+                    S_total.value = (shot * count);
+                }else{                   
+                    shot = (shot * count);
+                    S_total.value = shot;
+                    shot = 500;
+                }
+            }
+ 
+            function order(){
+                // window.close();
+
+                opener.document.getElementById('shot_plus').value = document.getElementById('S_total').value;
+
+                window.close();
+            }
+
+            // const data = 'data';
+            // const aTag = document.querySelector('a');
+            // aTag.addEventListener('click',() =>{
+            //     location.href = 'receive.html?${data}';
+            // });
+            </script>
+    </head>
+
+
+    <body>
+        <input type = 'button' value = '-' onclick = 'minus()'>
+        샷추가(500원)
+        <input type = 'button' value = '+' onclick = 'plus()'>
+        <input type = 'text' id = 'S_total' style = 'width: 70px;'>
+<br>
+        
+                <div style = 'text-align: center;'>
+                <input type = 'button' value = '담기' onclick = 'order()'>
+            </div>
+       
+        
+    </body>
+</html>
